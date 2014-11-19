@@ -11,6 +11,14 @@
         );
     }
 
+    // dependency check
+    if (function_exists('jsShrink') === false) {
+        throw new \Exception(
+            '*jsShrink* function does not exist. Please see ' .
+            'https://github.com/vrana/JsShrink/'
+        );
+    }
+
     /**
      * JsCompressor
      * 
@@ -61,6 +69,71 @@
                 $config = \Plugin\Config::retrieve();
                 self::$_config = $config['TurtlePHP-JsCompressorPlugin'];
             }
+        }
+
+        /**
+         * getBatchPath
+         * 
+         * @access public
+         * @static
+         * @param  string $batchName
+         * @return void
+         */
+        public static function getBatchPath($batchName)
+        {
+            // Config settings
+            $files = self::$_config['batches'][$batchName]['files'];
+            $storagePath = self::$_config['batches'][$batchName]['storage'];
+            $compress = self::$_config['compress'];
+
+            // Last modified epoch
+            $lastModifiedEpoch = 0;
+            foreach ($files as $file) {
+                $mtime = filemtime($file);
+                if ($mtime > $lastModifiedEpoch) {
+                    $lastModifiedEpoch = $mtime;
+                }
+            }
+
+            // Create paths
+            $minifiedPath = ($storagePath) . '/' . ($batchName) . '.' .
+                ($lastModifiedEpoch) . '.min.js';
+            $fullPath = ($storagePath) . '/' . ($batchName) . '.' .
+                ($lastModifiedEpoch) . '.js';
+
+            // If this iteration has already been written
+            if (is_file($fullPath)) {
+                if ($compress) {
+                    return str_replace(WEBROOT, '', $minifiedPath);
+                }
+                return str_replace(WEBROOT, '', $fullPath);
+            }
+
+            /**
+             * Create and return (recursively)
+             * 
+             */
+
+            // Generate the contents by looping over each file
+            $contents = '';
+            foreach ($files as $file) {
+                ob_start();
+                include ($file);
+                $_response = ob_get_contents();
+                ob_end_clean();
+                $contents .= $_response;
+            }
+
+            // Write minified
+            $minifiedFile = fopen($minifiedPath, 'w');
+            fwrite($minifiedFile, jsShrink($contents));
+
+            // Write full
+            $fullFile = fopen($fullPath, 'w');
+            fwrite($fullFile, $contents);
+
+            // Done
+            return self::getBatchPath($batchName);
         }
 
         /**
