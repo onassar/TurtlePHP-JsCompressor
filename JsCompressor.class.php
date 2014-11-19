@@ -62,6 +62,18 @@
                 self::$_config = $config['TurtlePHP-JsCompressorPlugin'];
             }
         }
+
+        /**
+         * setConfigPath
+         * 
+         * @access public
+         * @param  string $path
+         * @return void
+         */
+        public static function setConfigPath($path)
+        {
+            self::$_configPath = $path;
+        }
     }
 
     // Config
@@ -71,6 +83,3 @@
     if (is_file($configPath)) {
         JsCompressor::setConfigPath($configPath);
     }
-
-    // Load global functions
-    require_once 'global.inc.php';
