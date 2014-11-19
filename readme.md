@@ -1,1 +1,2 @@
-testing
+TurtlePHP JavaScript Compressor Plugin
+===
