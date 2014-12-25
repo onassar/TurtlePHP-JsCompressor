@@ -124,13 +124,21 @@
                 $contents .= $_response;
             }
 
-            // Write minified
+            // Write minified (and copy to clean filename)
             $minifiedFile = fopen($minifiedPath, 'w');
             fwrite($minifiedFile, jsShrink($contents));
+            copy(
+                $minifiedPath,
+                preg_replace('/\.[0-9]+\.min\.js$/', '.min.js', $minifiedPath)
+            );
 
-            // Write full
+            // Write full (and copy to clean filename)
             $fullFile = fopen($fullPath, 'w');
             fwrite($fullFile, $contents);
+            copy(
+                $fullPath,
+                preg_replace('/\.[0-9]+\.js$/', '.js', $fullPath)
+            );
 
             // Done
             return self::getBatchPath($batchName);
