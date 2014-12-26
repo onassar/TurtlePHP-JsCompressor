@@ -13,6 +13,18 @@
     $compress = true;
 
     /**
+     * Routes
+     * 
+     */
+    $routes =  array(
+        '^/compress$' => array(// G
+            'controller' => 'JsCompressor',
+            'action' => 'actionCompress',
+            'view' => false
+        )
+    );
+
+    /**
      * Batches
      * 
      */
@@ -40,6 +52,7 @@
         'TurtlePHP-JsCompressorPlugin',
         array(
             'compress' => $compress,
+            'routes' => $routes,
             'batches' => $batches
         )
     );

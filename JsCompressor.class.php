@@ -68,6 +68,7 @@
                 require_once self::$_configPath;
                 $config = \Plugin\Config::retrieve();
                 self::$_config = $config['TurtlePHP-JsCompressorPlugin'];
+                \Turtle\Application::addRoutes(self::$_config['routes']);
             }
         }
 
