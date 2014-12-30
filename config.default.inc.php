@@ -20,7 +20,7 @@
         '^/compress$' => array(// G
             'controller' => 'JsCompressor',
             'action' => 'actionCompress',
-            'view' => false
+            'view' => dirname(__FILE__) . '/view.inc.php'
         )
     );
 

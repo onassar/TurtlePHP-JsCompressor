@@ -11,6 +11,7 @@
         /**
          * actionCompress
          * 
+         * @access public
          * @return void
          */
         public function actionCompress()
@@ -20,6 +21,5 @@
             foreach ($batches as $key => $settings) {
                 \Plugin\JsCompressor::getBatchPath($key);
             }
-            exit(0);
         }
     }
