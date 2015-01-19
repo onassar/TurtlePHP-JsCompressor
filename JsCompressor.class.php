@@ -87,6 +87,13 @@
             $storagePath = self::$_config['batches'][$batchName]['storage'];
             $compress = self::$_config['compress'];
 
+            // Check if writable
+            if (posix_access($storagePath, POSIX_W_OK) === false) {
+                throw new \Exception(
+                    '*' . ($storagePath) . '* needs to be writable.'
+                );
+            }
+
             // Last modified epoch
             $lastModifiedEpoch = 0;
             foreach ($files as $file) {
