@@ -33,8 +33,21 @@
         {
             $config = \Plugin\Config::retrieve('TurtlePHP-JsCompressorPlugin');
             $batches = $config['batches'];
+            $paths = array();
             foreach ($batches as $key => $settings) {
-                \Plugin\JsCompressor::getBatchPath($key);
+                array_push(
+                    $paths,
+                    array(
+                        $key => \Plugin\JsCompressor::getBatchPath($key)
+                    )
+                );
             }
+            $response = array(
+                'success' => true,
+                'data' => array(
+                    'paths' => $paths
+                )
+            );
+            $this->_pass('response', json_encode($response));;
         }
     }
