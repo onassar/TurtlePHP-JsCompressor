@@ -35,12 +35,7 @@
             $batches = $config['batches'];
             $paths = array();
             foreach ($batches as $key => $settings) {
-                array_push(
-                    $paths,
-                    array(
-                        $key => \Plugin\JsCompressor::getBatchPath($key)
-                    )
-                );
+                $paths[$key] = \Plugin\JsCompressor::getBatchPath($key);
             }
             $response = array(
                 'success' => true,
