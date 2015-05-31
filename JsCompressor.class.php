@@ -78,7 +78,7 @@
          * @access public
          * @static
          * @param  string $batchName
-         * @return void
+         * @return string
          */
         public static function getBatchPath($batchName)
         {
