@@ -78,9 +78,10 @@
          * @access public
          * @static
          * @param  string $batchName
+         * @param  boolean $force (default: false)
          * @return string
          */
-        public static function getBatchPath($batchName)
+        public static function getBatchPath($batchName, $force = false)
         {
             // Config settings
             $files = self::$_config['batches'][$batchName]['files'];
@@ -110,7 +111,7 @@
                 ($lastModifiedEpoch) . '.js';
 
             // If this iteration has already been written
-            if (is_file($fullPath)) {
+            if (is_file($fullPath) && $force === false) {
                 if ($compress) {
                     return str_replace(WEBROOT, '', $minifiedPath);
                 }
