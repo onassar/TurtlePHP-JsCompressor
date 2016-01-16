@@ -43,6 +43,6 @@
                     'paths' => $paths
                 )
             );
-            $this->_pass('response', json_encode($response));;
+            $this->_pass('response', json_encode($response));
         }
     }
