@@ -95,19 +95,17 @@
             }
 
             // Last modified epoch
-            $lastModifiedEpoch = 0;
+            $md5 = '';
             foreach ($files as $file) {
-                $mtime = filemtime($file);
-                if ($mtime > $lastModifiedEpoch) {
-                    $lastModifiedEpoch = $mtime;
-                }
+                $md5 = md5($md5) . filemd5($file);
+                $md5 = md5($md5);
             }
 
             // Create paths
             $minifiedPath = ($storagePath) . '/' . ($batchName) . '.' .
-                ($lastModifiedEpoch) . '.min.js';
+                ($md5) . '.min.js';
             $fullPath = ($storagePath) . '/' . ($batchName) . '.' .
-                ($lastModifiedEpoch) . '.js';
+                ($md5) . '.js';
 
             // If this iteration has already been written
             if (is_file($fullPath)) {
