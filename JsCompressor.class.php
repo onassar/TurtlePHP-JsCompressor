@@ -97,9 +97,9 @@
             // Last modified epoch
             $md5 = '';
             foreach ($files as $file) {
-                $md5 = md5($md5) . filemd5($file);
-                $md5 = md5($md5);
+                $md5 .= filemd5($file);
             }
+            $md5 = md5($md5);
 
             // Create paths
             $minifiedPath = ($storagePath) . '/' . ($batchName) . '.' .
