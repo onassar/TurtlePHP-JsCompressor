@@ -16,7 +16,7 @@
      * Routes
      * 
      */
-    $routes =  array(
+    $routes = array(
         '^/compress/all$' => array(// G
             'controller' => 'JsCompressor',
             'action' => 'actionCompressAll',
