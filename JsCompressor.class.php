@@ -78,9 +78,10 @@
          * @access public
          * @static
          * @param  string $batchName
+         * @param  null|boolean $compressed (default: null)
          * @return string
          */
-        public static function getBatchPath($batchName)
+        public static function getBatchPath($batchName, $compressed = null)
         {
             // Config settings
             $files = self::$_config['batches'][$batchName]['files'];
@@ -108,8 +109,8 @@
                 ($md5) . '.js';
 
             // If this iteration has already been written
-            if (is_file($fullPath)) {
-                if ($compress) {
+            if (is_file($fullPath) === true) {
+                if ($compress || $compressed === true) {
                     return str_replace(WEBROOT, '', $minifiedPath);
                 }
                 return str_replace(WEBROOT, '', $fullPath);
