@@ -11,9 +11,9 @@
         /**
          * actionCompress
          * 
-         * @access public
-         * @param  string $key
-         * @return void
+         * @access  public
+         * @param   string $key
+         * @return  void
          */
         public function actionCompress($key)
         {
@@ -26,8 +26,8 @@
         /**
          * actionCompressAll
          * 
-         * @access public
-         * @return void
+         * @access  public
+         * @return  void
          */
         public function actionCompressAll()
         {

@@ -30,8 +30,8 @@
         /**
          * _configPath
          *
-         * @var    string
-         * @access protected
+         * @var     string
+         * @access  protected
          * @static
          */
         protected static $_configPath = 'config.default.inc.php';
@@ -39,8 +39,8 @@
         /**
          * _config
          *
-         * @var    array
-         * @access protected
+         * @var     array
+         * @access  protected
          * @static
          */
         protected static $_config;
@@ -48,8 +48,8 @@
         /**
          * _initiated
          *
-         * @var    boolean
-         * @access protected
+         * @var     boolean
+         * @access  protected
          * @static
          */
         protected static $_initiated = false;
@@ -57,9 +57,9 @@
         /**
          * init
          * 
-         * @access public
+         * @access  public
          * @static
-         * @return void
+         * @return  void
          */
         public static function init()
         {
@@ -75,11 +75,11 @@
         /**
          * getBatchPath
          * 
-         * @access public
+         * @access  public
          * @static
-         * @param  string $batchName
-         * @param  null|boolean $compressed (default: null)
-         * @return string
+         * @param   string $batchName
+         * @param   null|boolean $compressed (default: null)
+         * @return  string
          */
         public static function getBatchPath($batchName, $compressed = null)
         {
@@ -154,9 +154,9 @@
         /**
          * setConfigPath
          * 
-         * @access public
-         * @param  string $path
-         * @return void
+         * @access  public
+         * @param   string $path
+         * @return  void
          */
         public static function setConfigPath($path)
         {
@@ -168,6 +168,6 @@
     $info = pathinfo(__DIR__);
     $parent = ($info['dirname']) . '/' . ($info['basename']);
     $configPath = ($parent) . '/config.inc.php';
-    if (is_file($configPath)) {
+    if (is_file($configPath) === true) {
         JsCompressor::setConfigPath($configPath);
     }
