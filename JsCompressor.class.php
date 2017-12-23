@@ -55,6 +55,18 @@
         protected static $_initiated = false;
 
         /**
+         * _getFileMd5
+         * 
+         * @access  protected
+         * @static
+         * @return  void
+         */
+        protected static function _getFileMd5($path)
+        {
+            return md5(file_get_contents($path));
+        }
+
+        /**
          * init
          * 
          * @access  public
@@ -98,7 +110,7 @@
             // Last modified epoch
             $md5 = '';
             foreach ($files as $file) {
-                $md5 .= filemd5($file);
+                $md5 .= self::_getFileMd5($file);
             }
             $md5 = md5($md5);
 
