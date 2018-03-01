@@ -134,18 +134,18 @@
              */
 
             // Generate the contents by looping over each file
-            $contents = '';
+            $content = '';
             foreach ($files as $file) {
                 ob_start();
                 include ($file);
                 $_response = ob_get_contents();
                 ob_end_clean();
-                $contents .= $_response;
+                $content .= $_response;
             }
 
             // Write minified (and copy to clean filename)
             $minifiedFile = fopen($minifiedPath, 'w');
-            fwrite($minifiedFile, jsShrink($contents));
+            fwrite($minifiedFile, jsShrink($content));
             copy(
                 $minifiedPath,
                 preg_replace('/\.[0-9]+\.min\.js$/', '.min.js', $minifiedPath)
@@ -153,7 +153,7 @@
 
             // Write full (and copy to clean filename)
             $fullFile = fopen($fullPath, 'w');
-            fwrite($fullFile, $contents);
+            fwrite($fullFile, $content);
             copy(
                 $fullPath,
                 preg_replace('/\.[0-9]+\.js$/', '.js', $fullPath)
