@@ -18,8 +18,8 @@
         public function actionCompress($key)
         {
             $path = \Plugin\JsCompressor::getBatchPath($key);
-            $contents = file_get_contents(WEBROOT . ($path));
-            $this->_pass('response', $contents);
+            $content = file_get_contents(WEBROOT . ($path));
+            $this->_pass('response', $content);
             header('Content-type: text/javascript');
         }
 
