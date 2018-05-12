@@ -41,8 +41,8 @@
             'files' => array(
 
                 // Dependencies
-                WEBROOT . '/app/static/vendors/extend.js',
-                WEBROOT . '/app/static/vendors/jquery-1.11.1.min.js'
+                WEBROOT . '/app/static/vendors/external/extend/v0.0.0/extend.js',
+                WEBROOT . '/app/static/vendors/external/jquery/v1.11.3/jQuery.min.js'
             )
         )
     );
