@@ -15,7 +15,7 @@
          * @param   string $key
          * @return  void
          */
-        public function actionCompress($key)
+        public function actionCompress(string $key)
         {
             $path = \Plugin\JsCompressor::getBatchPath($key);
             $content = file_get_contents(WEBROOT . ($path));
