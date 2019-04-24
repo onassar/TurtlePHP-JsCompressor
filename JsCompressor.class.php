@@ -30,8 +30,8 @@
         /**
          * _configPath
          *
-         * @var     string
          * @access  protected
+         * @var     string
          * @static
          */
         protected static $_configPath = 'config.default.inc.php';
@@ -39,8 +39,8 @@
         /**
          * _config
          *
-         * @var     array
          * @access  protected
+         * @var     array
          * @static
          */
         protected static $_config;
@@ -48,8 +48,8 @@
         /**
          * _initiated
          *
-         * @var     boolean
          * @access  protected
+         * @var     bool
          * @static
          */
         protected static $_initiated = false;
@@ -90,7 +90,7 @@
          * @access  public
          * @static
          * @param   string $batchName
-         * @param   null|boolean $compressed (default: null)
+         * @param   null|bool $compressed (default: null)
          * @return  string
          */
         public static function getBatchPath($batchName, $compressed = null)
