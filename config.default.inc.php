@@ -7,14 +7,23 @@
     namespace Plugin\JsCompressor;
 
     /**
-     * Compression
+     * Plugin Config Data
      * 
+     */
+
+    /**
+     * $compress
+     * 
+     * @var     bool (default: true)
+     * @access  private
      */
     $compress = true;
 
     /**
-     * Routes
+     * $routes
      * 
+     * @var     array
+     * @access  private
      */
     $routes = array(
         '^/compress/all$' => array(// G
@@ -30,11 +39,11 @@
     );
 
     /**
-     * Batches
+     * $batches
      * 
+     * @var     array
+     * @access  private
      */
-
-    // Batches of files to compressor and write
     $batches = array(
         'app' => array(
             'storage' => WEBROOT . '/app/static/js/compiled',
@@ -48,16 +57,16 @@
     );
 
     /**
-     * Config storage
+     * $pluginConfigData
+     * 
+     * @var     array
+     * @access  private
+     */
+    $pluginConfigData = compact('compress', 'routes', 'batches');
+
+    /**
+     * Storage
      * 
      */
-
-    // Store
-    \Plugin\Config::add(
-        'TurtlePHP-JsCompressorPlugin',
-        array(
-            'compress' => $compress,
-            'routes' => $routes,
-            'batches' => $batches
-        )
-    );
+    $key = 'TurtlePHP-JsCompressorPlugin';
+    \Plugin\Config::add($key, $pluginConfigData);
