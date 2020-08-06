@@ -3,7 +3,7 @@
     /**
      * JsCompressorController
      * 
-     * @extends Controller
+     * @extends \Turtle\Controller
      * @final
      */
     final class JsCompressorController extends \Turtle\Controller
@@ -12,13 +12,14 @@
          * actionCompress
          * 
          * @access  public
-         * @param   string $key
+         * @param   string $batchKey
          * @return  void
          */
-        public function actionCompress(string $key)
+        public function actionCompress(string $batchKey)
         {
-            $path = \Plugin\JsCompressor::getBatchPath($key);
-            $content = file_get_contents(WEBROOT . ($path));
+            $path = \Plugin\JsCompressor::getBatchPath($batchKey);
+            $path = WEBROOT . ($path);
+            $content = file_get_contents($path);
             $this->_pass('response', $content);
             header('Content-type: text/javascript');
         }
@@ -37,12 +38,10 @@
             foreach ($batches as $key => $settings) {
                 $paths[$key] = \Plugin\JsCompressor::getBatchPath($key);
             }
-            $response = array(
-                'success' => true,
-                'data' => array(
-                    'paths' => $paths
-                )
-            );
-            $this->_pass('response', json_encode($response));
+            $success = true;
+            $data = compact('paths');
+            $response = compact('success', 'data');
+            $encodedResponse = json_encode($response);
+            $this->_pass('response', $encodedResponse);
         }
     }
